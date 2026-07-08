@@ -1,0 +1,90 @@
+[
+  {
+    "id": "case-001",
+    "caseCode": "CASE_001",
+    "index": "01",
+    "year": 2024,
+    "title": [
+      "Zero-Day",
+      "Threat Engine"
+    ],
+    "description": "Real-time threat ingestion engine for a Fortune 500 SOC. Reduced triage latency by 64% through a custom Rust event loop processing 100k+ events/sec. E2E encrypted, zero-trust architecture.",
+    "techStack": [
+      "Go",
+      "Kafka",
+      "PostgreSQL",
+      "gRPC"
+    ],
+    "image": {
+      "src": "https://picsum.photos/seed/soc-dashboard-04/1200/900.jpg",
+      "alt": "SOC Interface"
+    },
+    "href": "#"
+  },
+  {
+    "id": "case-002",
+    "caseCode": "CASE_002",
+    "index": "02",
+    "year": 2024,
+    "title": [
+      "Quantum-",
+      "Resistant Auth"
+    ],
+    "description": "Post-quantum authentication backend processing 10M+ daily logins. CRYSTALS-Kyber key encapsulation under the hood. Hardened against timing side-channels and state exhaustion attacks.",
+    "techStack": [
+      "Go",
+      "Kyber-1024",
+      "Redis",
+      "mTLS"
+    ],
+    "image": {
+      "src": "https://picsum.photos/seed/quantum-mfa-77/1200/900.jpg",
+      "alt": "Quantum-Resistant MFA"
+    },
+    "href": "#"
+  },
+  {
+    "id": "case-003",
+    "caseCode": "CASE_003",
+    "index": "03",
+    "year": 2023,
+    "title": [
+      "Distributed",
+      "Identity Mesh"
+    ],
+    "description": "Federated identity mesh for 2.4M users across 14 internal VPCs. Eliminated lateral movement vectors entirely. Built on a containerized microservice architecture. FedRAMP Moderate aligned.",
+    "techStack": [
+      "OAuth 2.1",
+      "Kubernetes",
+      "Istio",
+      "FedRAMP"
+    ],
+    "image": {
+      "src": "https://picsum.photos/seed/sso-passkey-22/1200/900.jpg",
+      "alt": "SSO Passkey"
+    },
+    "href": "#"
+  },
+  {
+    "id": "case-004",
+    "caseCode": "CASE_004",
+    "index": "04",
+    "year": 2023,
+    "title": [
+      "Global Edge",
+      "WAF Controller"
+    ],
+    "description": "High-throughput control plane for a global WAF. Live traffic rule propagation under 2 seconds worldwide. Written in Go, deployed via Terraform across 45 edge regions.",
+    "techStack": [
+      "Go",
+      "Terraform",
+      "eBPF",
+      "mTLS"
+    ],
+    "image": {
+      "src": "https://picsum.photos/seed/edge-firewall-99/1200/900.jpg",
+      "alt": "Edge Firewall UI"
+    },
+    "href": "#"
+  }
+]

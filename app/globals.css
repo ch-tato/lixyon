@@ -1,0 +1,374 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ BASE RESETS ============ */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  background: #0A0A0A;
+  color: #F4F4F0;
+  overflow-x: hidden;
+}
+
+/* Kill native scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Selection */
+::selection {
+  background: #C6FF00;
+  color: #0A0A0A;
+}
+
+/* ============ LENIS ============ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ============ CURSOR ============ */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #F4F4F0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s,
+    border 0.25s,
+    mix-blend-mode 0s;
+  will-change: transform;
+}
+
+.cursor-dot.expand {
+  width: 72px;
+  height: 72px;
+  background: transparent;
+  border: 1px solid #C6FF00;
+  mix-blend-mode: normal;
+}
+
+.cursor-dot.expand::after {
+  content: attr(data-label);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: #C6FF00;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .cursor-dot {
+    display: none;
+  }
+
+  body {
+    cursor: auto !important;
+  }
+}
+
+@media (min-width: 901px) {
+  body,
+  a,
+  button,
+  input,
+  textarea {
+    cursor: none;
+  }
+}
+
+/* ============ GRAIN OVERLAY ============ */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+}
+
+/* ============ GRID BACKGROUND ============ */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(244, 244, 240, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 244, 240, 0.035) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ============ PRELOADER ============ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: #0A0A0A;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pre-counter {
+  font-family: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 42vw, 42rem);
+  line-height: 0.82;
+  color: #F4F4F0;
+  letter-spacing: -0.04em;
+  position: relative;
+}
+
+.pre-counter::after {
+  content: '%';
+  font-size: 0.18em;
+  color: #C6FF00;
+  vertical-align: top;
+  margin-left: 0.05em;
+}
+
+/* ============ MARQUEE ============ */
+.marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+
+.marquee-track.slow {
+  animation-duration: 50s;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ============ HEADINGS ============ */
+.hero-title {
+  font-family: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 12vw, 14rem);
+  line-height: 0.82;
+  letter-spacing: -0.015em;
+}
+
+.section-heading {
+  font-family: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 11vw, 13rem);
+  line-height: 0.82;
+  letter-spacing: -0.01em;
+}
+
+.footer-mega {
+  font-family: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 22vw, 22rem);
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+}
+
+/* ============ BLOCK REVEAL ============ */
+.block-reveal {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.1em 0.15em;
+  margin: -0.1em -0.15em;
+}
+
+.block-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  transform: translateX(-100%);
+}
+
+/* ============ PROJECT IMAGE ============ */
+.project-img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.project-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  will-change: transform;
+  filter: grayscale(100%) contrast(1.05) brightness(0.85);
+  transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-img {
+  filter: grayscale(0%) contrast(1) brightness(1);
+}
+
+/* ============ TERMINAL FORM ============ */
+.term-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(244, 244, 240, 0.18);
+  padding: 1rem 0;
+  color: #F4F4F0;
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.term-input:focus {
+  border-color: #C6FF00;
+}
+
+.term-input::placeholder {
+  color: rgba(244, 244, 240, 0.25);
+}
+
+/* ============ BLINKING ============ */
+.blink {
+  animation: blink 1.1s steps(2, end) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ============ NAV LINK UNDERLINE ============ */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C6FF00;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ============ SKILL CARD ============ */
+.skill-card {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(198, 255, 0, 0.08) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+.skill-card:hover {
+  background: #C6FF00;
+  color: #0A0A0A;
+}
+
+.skill-card:hover .skill-arrow {
+  transform: translate(4px, -4px);
+}
+
+.skill-arrow {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============ SCROLL INDICATOR ============ */
+.scroll-indicator {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, #C6FF00);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-indicator::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #C6FF00;
+  animation: scrollDown 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    top: -50%;
+  }
+  100% {
+    top: 100%;
+  }
+}
