@@ -19,8 +19,6 @@ export function BlockReveal({ children, className = '' }: BlockRevealProps) {
     const content = contentRef.current;
     const overlay = overlayRef.current;
     if (!wrapper || !content || !overlay) return;
-
-    gsap.set(content, { opacity: 0 });
     gsap.set(overlay, {
       scaleX: 0,
       transformOrigin: 'left',
@@ -50,7 +48,7 @@ export function BlockReveal({ children, className = '' }: BlockRevealProps) {
 
   return (
     <span ref={wrapperRef} className={`block-reveal ${className}`}>
-      <span ref={contentRef}>{children}</span>
+      <span ref={contentRef} className="opacity-0">{children}</span>
       <span ref={overlayRef} className="block-overlay bg-volt" />
     </span>
   );

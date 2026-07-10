@@ -233,7 +233,8 @@ html.lenis body {
   height: 100%;
   z-index: 2;
   pointer-events: none;
-  transform: translateX(-100%);
+  transform: scaleX(0);
+  transform-origin: left;
 }
 
 /* ============ PROJECT IMAGE ============ */
