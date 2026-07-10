@@ -72,8 +72,8 @@ export function ProjectCard({ project, reverse, isLast = false }: ProjectCardPro
     >
       {/* Text column */}
       <div
-        className={`col-span-12 md:col-span-5 flex flex-col justify-between ${
-          reverse ? '' : 'order-2 md:order-1'
+        className={`col-span-12 md:col-span-5 flex flex-col justify-between order-2 ${
+          reverse ? 'md:order-2' : 'md:order-1'
         }`}
       >
         <div>
@@ -113,8 +113,8 @@ export function ProjectCard({ project, reverse, isLast = false }: ProjectCardPro
 
       {/* Image column */}
       <div
-        className={`col-span-12 md:col-span-7 ${
-          reverse ? '' : 'order-1 md:order-2'
+        className={`col-span-12 md:col-span-7 order-1 ${
+          reverse ? 'md:order-1' : 'md:order-2'
         }`}
       >
         <div className="project-img-wrap aspect-[4/3] bg-ink2">
