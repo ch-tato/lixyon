@@ -28,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'LIXYON/33 — System Architect × Creative Defender',
+  title: 'LIXYON/33',
   description:
     'Hybrid operator fusing impenetrable security architecture with frictionless interface design.',
 };

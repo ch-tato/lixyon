@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { BlockReveal } from './BlockReveal';
+import { Button } from './Button';
 import type { Project } from '@/types/project';
 
 interface ProjectCardProps {
@@ -100,15 +101,14 @@ export function ProjectCard({ project, reverse, isLast = false }: ProjectCardPro
             ))}
           </div>
         </div>
-        <a
+        <Button
           href={project.href}
-          className="magnetic group/link inline-flex w-fit items-center gap-3 bg-volt text-ink px-8 py-4 font-mono text-xs uppercase tracking-[.25em] hover:bg-paper transition-colors mt-8"
-          data-cursor
-          data-label="OPEN"
+          className="mt-8 group/link w-fit"
+          cursorLabel="OPEN"
         >
           <span>Open Case File</span>
           <span className="transition-transform group-hover/link:translate-x-2">→</span>
-        </a>
+        </Button>
       </div>
 
       {/* Image column */}

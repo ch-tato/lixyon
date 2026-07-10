@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef } from 'react';
+import { Button } from './Button';
 
 // Single source of truth for contact email (§8.3 resolution)
 const CONTACT_EMAIL = 'akuquthbi@gmail.com';
@@ -102,15 +103,13 @@ export function ContactForm() {
           <div className="text-[10px] text-paper/40 font-mono uppercase tracking-[.2em]">
             <span className="text-volt">↳</span> Encrypted end-to-end // Response within 24h
           </div>
-          <button
+          <Button
             type="submit"
-            className="magnetic group inline-flex items-center gap-3 bg-volt text-ink px-8 py-4 font-mono text-xs uppercase tracking-[.25em] hover:bg-paper transition-colors"
-            data-cursor
-            data-label="SEND"
+            cursorLabel="SEND"
           >
             <span>{btnLabel}</span>
             <span className="transition-transform group-hover:translate-x-2">→</span>
-          </button>
+          </Button>
         </div>
       </form>
     </div>
