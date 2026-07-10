@@ -16,6 +16,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   /** Render as an <a> tag instead of <button> */
   href?: string;
+  target?: string;
+  rel?: string;
   /** Custom cursor label (integrates with CustomCursor) */
   cursorLabel?: string;
   children: React.ReactNode;
@@ -90,6 +92,8 @@ function UnframedButton({
         className={`${baseClasses} ${className}`}
         data-cursor
         data-label={cursorLabel}
+        target={rest.target}
+        rel={rest.rel}
       >
         {content}
       </a>
@@ -257,6 +261,8 @@ function FramedButton({
         data-label={cursorLabel}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        target={rest.target}
+        rel={rest.rel}
       >
         {inner}
       </a>
