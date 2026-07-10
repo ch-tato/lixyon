@@ -1,5 +1,6 @@
 import { BlockReveal } from '@/components/ui/BlockReveal';
 import { ProjectCard } from '@/components/ui/ProjectCard';
+import { ContributionGraph } from '@/components/ui/ContributionGraph';
 import projectsData from '@/data/projects.json';
 import type { ProjectsData } from '@/types/project';
 
@@ -30,6 +31,8 @@ export function Fieldwork() {
           isLast={i === projects.length - 1}
         />
       ))}
+      
+      <ContributionGraph />
     </section>
   );
 }
