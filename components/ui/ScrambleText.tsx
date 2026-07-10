@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useEffect, useImperativeHandle, forwardRef, useCallback } from 'react';
 import SplitType from 'split-type';
 import { DURATION } from '@/lib/motion';
 
@@ -40,7 +40,7 @@ export const ScrambleText = forwardRef<ScrambleTextHandle, ScrambleTextProps>(
       };
     }, [text]);
 
-    const play = () => {
+    const play = useCallback(() => {
       const el = elRef.current;
       if (!el) return;
 
@@ -73,9 +73,9 @@ export const ScrambleText = forwardRef<ScrambleTextHandle, ScrambleTextProps>(
         }
         iteration += 1 / 2;
       }, DURATION.scrambleTick);
-    };
+    }, [text]);
 
-    useImperativeHandle(ref, () => ({ play }), [text]);
+    useImperativeHandle(ref, () => ({ play }), [play]);
 
     useEffect(() => {
       if (autoPlay) {
@@ -83,7 +83,7 @@ export const ScrambleText = forwardRef<ScrambleTextHandle, ScrambleTextProps>(
         const timer = setTimeout(play, 50);
         return () => clearTimeout(timer);
       }
-    }, [autoPlay]);
+    }, [autoPlay, play]);
 
     useEffect(() => {
       return () => {

@@ -82,7 +82,7 @@ export function ProjectCard({ project, reverse, isLast = false }: ProjectCardPro
               {project.index}
             </div>
             <div className="font-mono text-[10px] uppercase tracking-[.3em] text-volt">
-              {project.caseCode} // {project.year}
+              {project.caseCode} {/* // */} {project.year}
             </div>
           </div>
           <h3 className="font-display text-5xl md:text-6xl uppercase mb-5 leading-[.9]">
