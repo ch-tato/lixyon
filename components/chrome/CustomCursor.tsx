@@ -11,6 +11,40 @@ export function CustomCursor() {
     // Center the custom cursors precisely on the mouse pointer
     gsap.set([cursorDot.current, cursorOutline.current], { xPercent: -50, yPercent: -50 });
 
+    let activeTarget: HTMLElement | null = null;
+    let isCurrentlyDisabled = false;
+
+    const updateHoverState = (target: HTMLElement, isDisabled: boolean) => {
+      if (isDisabled) {
+        cursorDot.current?.classList.add('expand', 'disabled');
+        
+        gsap.to(cursorDot.current, { scale: 1, duration: 0.3, mixBlendMode: 'normal' });
+        gsap.to(cursorOutline.current, { scale: 0, duration: 0.3 });
+      } else {
+        cursorDot.current?.classList.remove('expand', 'disabled');
+
+        gsap.to(cursorDot.current, { scale: 0, duration: 0.3 });
+        gsap.to(cursorOutline.current, {
+          scale: 1.5, // Expanded size
+          backgroundColor: '#C6FF00', // Solid volt color
+          borderColor: 'transparent',
+          mixBlendMode: 'difference',
+          duration: 0.3,
+        });
+      }
+    };
+
+    const checkDisabledState = () => {
+      if (!activeTarget) return;
+      const isDisabled = (activeTarget as HTMLButtonElement).disabled === true || activeTarget.hasAttribute('disabled');
+      if (isDisabled !== isCurrentlyDisabled) {
+        isCurrentlyDisabled = isDisabled;
+        updateHoverState(activeTarget, isDisabled);
+      }
+    };
+
+    gsap.ticker.add(checkDisabledState);
+
     const handleMouseMove = (e: MouseEvent) => {
       // 3. GSAP Logic: Animate inner dot quickly (0.1s)
       gsap.to(cursorDot.current, {
@@ -30,23 +64,24 @@ export function CustomCursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       // 4. Reactive Hover States: detect enter/leave on a, button, or .hover-target
-      const target = (e.target as HTMLElement).closest('a, button, .hover-target, [data-cursor]');
+      const target = (e.target as HTMLElement).closest('a, button, .hover-target, [data-cursor]') as HTMLElement;
       if (target) {
-        gsap.to(cursorDot.current, { scale: 0, duration: 0.3 });
-        gsap.to(cursorOutline.current, {
-          scale: 1.5, // Expanded size
-          backgroundColor: '#C6FF00', // Solid volt color
-          borderColor: 'transparent',
-          mixBlendMode: 'difference',
-          duration: 0.3,
-        });
+        activeTarget = target;
+        const isDisabled = (target as HTMLButtonElement).disabled === true || target.hasAttribute('disabled');
+        isCurrentlyDisabled = isDisabled;
+        updateHoverState(target, isDisabled);
       }
     };
 
     const handleMouseOut = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement).closest('a, button, .hover-target, [data-cursor]');
+      const target = (e.target as HTMLElement).closest('a, button, .hover-target, [data-cursor]') as HTMLElement;
       if (target) {
-        gsap.to(cursorDot.current, { scale: 1, duration: 0.3 });
+        activeTarget = null;
+        isCurrentlyDisabled = false;
+
+        cursorDot.current?.classList.remove('expand', 'disabled');
+
+        gsap.to(cursorDot.current, { scale: 1, duration: 0.3, mixBlendMode: 'difference' });
         gsap.to(cursorOutline.current, {
           scale: 1,
           backgroundColor: 'transparent',
@@ -63,6 +98,7 @@ export function CustomCursor() {
     document.addEventListener('mouseout', handleMouseOut);
 
     return () => {
+      gsap.ticker.remove(checkDisabledState);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseout', handleMouseOut);

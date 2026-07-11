@@ -136,6 +136,11 @@ export function ContactForm() {
           <Button
             type="submit"
             cursorLabel="SEND"
+            disabled={btnLabel !== 'Transmit'}
+            className={`
+              ${btnLabel === 'Transmitting…' ? 'opacity-50 cursor-not-allowed' : ''}
+              ${btnLabel === 'Transmitted ✓' ? 'bg-volt !text-ink !border-volt cursor-not-allowed' : ''}
+            `.trim()}
           >
             <span>{btnLabel}</span>
             <span className="transition-transform group-hover:translate-x-2">→</span>
