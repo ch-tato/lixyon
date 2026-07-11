@@ -33,8 +33,6 @@ export function TerminalContact() {
             {/* §8.3 fix: mailto uses CONTACT_EMAIL as single source of truth */}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              target="_blank"
-              rel="noopener noreferrer"
               className="magnetic block hover:text-volt transition-colors"
               data-cursor
               data-label="MAIL"
