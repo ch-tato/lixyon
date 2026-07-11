@@ -5,7 +5,7 @@
     "index": "01",
     "year": 2024,
     "title": [
-      "Zero-Day",
+      "One-Day",
       "Threat Engine"
     ],
     "description": "Real-time threat ingestion engine for a Fortune 500 SOC. Reduced triage latency by 64% through a custom Rust event loop processing 100k+ events/sec. E2E encrypted, zero-trust architecture.",
