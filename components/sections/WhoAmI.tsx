@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '@/lib/gsap';
 import { BlockReveal } from '@/components/ui/BlockReveal';
@@ -7,6 +7,23 @@ import { StatCounter } from '@/components/ui/StatCounter';
 
 export function WhoAmI() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [contributions, setContributions] = useState(514);
+
+  useEffect(() => {
+    const fetchContributions = async () => {
+      try {
+        const res = await fetch('/api/github-contributions?year=all');
+        if (!res.ok) throw new Error('Failed to fetch contributions');
+        const data = await res.json();
+        if (data && typeof data.totalContributions === 'number') {
+          setContributions(data.totalContributions);
+        }
+      } catch (err) {
+        console.error('Error syncing contributions:', err);
+      }
+    };
+    fetchContributions();
+  }, []);
 
   // Fade-up animations for paragraphs
   useGSAP(() => {
@@ -57,7 +74,7 @@ export function WhoAmI() {
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 mt-16 md:mt-24 border-t border-paper/10 pt-10">
-            <StatCounter value={514} label="Contributions Commited" accent />
+            <StatCounter value={contributions} label="Contributions Commited" accent />
             <StatCounter value={3} label="Years in Field" />
             <StatCounter value={14} label="Products Shipped" accent />
             <StatCounter value={3.71} suffix="/4.00" decimals={2} label="Informatics Engineering GPA" />
