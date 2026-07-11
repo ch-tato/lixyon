@@ -33,19 +33,21 @@ export function TerminalContact() {
             {/* §8.3 fix: mailto uses CONTACT_EMAIL as single source of truth */}
             <a
               href={`mailto:${CONTACT_EMAIL}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="magnetic block hover:text-volt transition-colors"
               data-cursor
               data-label="MAIL"
             >
               → {CONTACT_EMAIL}
             </a>
-            <a href="https://github.com/ch-tato" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="GIT">
+            <a href="https://github.com/ch-tato" target="_blank" rel="noopener noreferrer" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="GIT">
               → github.com/ch-tato
             </a>
-            <a href="https://www.linkedin.com/in/muhammad-abqori-b00443354/" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="LINKEDIN">
+            <a href="https://www.linkedin.com/in/muhammad-abqori-b00443354/" target="_blank" rel="noopener noreferrer" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="LINKEDIN">
               → linkedin.com/in/me/
             </a>
-            <a href="/cv.pdf" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="CV">
+            <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="CV">
               → cv.pdf [encrypted]
             </a>
           </div>
