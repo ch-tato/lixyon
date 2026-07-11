@@ -39,13 +39,13 @@ export function TerminalContact() {
             >
               → {CONTACT_EMAIL}
             </a>
-            <a href="#" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="GIT">
+            <a href="https://github.com/ch-tato" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="GIT">
               → github.com/ch-tato
             </a>
-            <a href="#" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="LINKEDIN">
-              → PGP 0xB3E1 7F4C
+            <a href="https://www.linkedin.com/in/muhammad-abqori-b00443354/" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="LINKEDIN">
+              → linkedin.com/in/me/
             </a>
-            <a href="#" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="CV">
+            <a href="/cv.pdf" className="magnetic block hover:text-volt transition-colors" data-cursor data-label="CV">
               → cv.pdf [encrypted]
             </a>
           </div>
