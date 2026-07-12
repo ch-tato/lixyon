@@ -30,7 +30,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'LIXYON/33',
   description:
-    'Muhammad Quthbi Danish Abqori | Backend Developer, DevOps Practitioner, and Red Team Enthusiast.',
+    'LIXYON/33 | Backend Developer, DevOps Practitioner, and Red Team Enthusiast.',
 
   icons: {
     icon: '/favicon.ico',
