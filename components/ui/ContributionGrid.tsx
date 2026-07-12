@@ -37,7 +37,7 @@ export function ContributionGrid({ data, activeYear, onRetry }: ContributionGrid
   // Render skeleton if loading
   if (isLoading) {
     return (
-      <div className="w-full overflow-x-auto touch-pan-x custom-scrollbar pb-4 animate-pulse">
+      <div className="w-full overflow-x-auto touch-pan-x custom-scrollbar pb-4 pt-8 -mt-8 animate-pulse">
         <div className="min-w-[750px] md:min-w-full w-full grid gap-[2px]" style={{ gridTemplateColumns: `auto repeat(53, minmax(0, 1fr))` }}>
           {/* Skeleton row 0: Months */}
           <div className="h-[1.25rem]"></div>
@@ -105,7 +105,7 @@ export function ContributionGrid({ data, activeYear, onRetry }: ContributionGrid
   });
 
   return (
-    <div className="w-full overflow-x-auto touch-pan-x pb-4 custom-scrollbar">
+    <div className="w-full overflow-x-auto touch-pan-x pb-4 pt-8 -mt-8 custom-scrollbar">
       <div className="min-w-[750px] md:min-w-full w-full">
         {/* Responsive Grid */}
         <div 
