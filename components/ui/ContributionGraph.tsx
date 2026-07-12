@@ -76,7 +76,7 @@ export function ContributionGraph() {
   const displayUsername = activeData !== 'loading' && activeData !== 'error' ? activeData.username : '...';
 
   return (
-    <div ref={graphRef} className="mt-20 md:mt-32 border border-paper/10 bg-ink2/30 p-6 md:p-10 flex flex-col md:flex-row gap-8">
+    <div ref={graphRef} className="mt-20 md:mt-32 border border-paper/10 bg-ink2/30 p-5 md:p-10 flex flex-col md:flex-row gap-6 md:gap-8 overflow-hidden">
       <div className="w-full md:w-32 flex-shrink-0">
         <YearTabs 
           years={years} 
@@ -85,12 +85,12 @@ export function ContributionGraph() {
         />
       </div>
       <div className="flex-1 min-w-0">
-        <div className="mb-8 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
-          <div>
-            <div className="font-mono text-[10px] uppercase tracking-[.3em] text-paper/40 mb-3">
+        <div className="mb-6 md:mb-8 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
+          <div className="min-w-0">
+            <div className="font-mono text-[9px] md:text-[10px] uppercase tracking-wider md:tracking-[.3em] text-paper/40 mb-2 md:mb-3 break-keep" style={{ overflowWrap: 'normal' }}>
               $ curl api.github.com/users/{displayUsername}/events
             </div>
-            <div className="font-mono text-xs uppercase tracking-[.2em] text-paper/60">
+            <div className="font-mono text-xs uppercase tracking-widest md:tracking-[.2em] text-paper/60">
               {activeData !== 'loading' && activeData !== 'error' 
                 ? `${activeData.totalContributions} contributions in ${activeYear}`
                 : `... contributions in ${activeYear}`}
@@ -102,9 +102,9 @@ export function ContributionGraph() {
             href={displayUsername !== '...' ? `https://github.com/${displayUsername}` : '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0"
+            className="shrink-0 text-[10px] md:text-xs"
           >
-            View Profile <span className="text-[10px]">↗</span>
+            View Profile <span className="text-[8px] md:text-[10px]">↗</span>
           </Button>
         </div>
         <ContributionGrid 

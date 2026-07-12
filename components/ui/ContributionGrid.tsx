@@ -37,8 +37,8 @@ export function ContributionGrid({ data, activeYear, onRetry }: ContributionGrid
   // Render skeleton if loading
   if (isLoading) {
     return (
-      <div className="w-full overflow-x-auto custom-scrollbar pb-4 animate-pulse">
-        <div className="min-w-[600px] w-full grid gap-[3px]" style={{ gridTemplateColumns: `auto repeat(53, minmax(0, 1fr))` }}>
+      <div className="w-full overflow-x-auto touch-pan-x custom-scrollbar pb-4 animate-pulse">
+        <div className="min-w-[750px] md:min-w-full w-full grid gap-[2px]" style={{ gridTemplateColumns: `auto repeat(53, minmax(0, 1fr))` }}>
           {/* Skeleton row 0: Months */}
           <div className="h-[1.25rem]"></div>
           {[...Array(53)].map((_, c) => (
@@ -49,7 +49,7 @@ export function ContributionGrid({ data, activeYear, onRetry }: ContributionGrid
           {/* Skeleton rows 1-7: Days */}
           {[0, 1, 2, 3, 4, 5, 6].map((rowIndex) => (
             <React.Fragment key={`skel-row-${rowIndex}`}>
-              <div className="text-[10px] font-mono text-paper/40 pr-2 flex items-center h-full">
+              <div className="text-[10px] leading-[10px] font-mono text-paper/40 pr-2 flex items-center h-full">
                  {rowIndex === 1 ? 'Mon' : rowIndex === 3 ? 'Wed' : rowIndex === 5 ? 'Fri' : ''}
               </div>
               {[...Array(53)].map((_, c) => (
@@ -60,9 +60,9 @@ export function ContributionGrid({ data, activeYear, onRetry }: ContributionGrid
         </div>
         
         {/* Legend Skeleton */}
-        <div className="min-w-[600px] flex items-center justify-end gap-2 mt-4 text-[10px] font-mono text-paper/40 uppercase tracking-widest">
+        <div className="min-w-[750px] md:min-w-full flex items-center justify-end gap-2 mt-4 text-[10px] font-mono text-paper/40 uppercase tracking-widest">
           <span>Less</span>
-          <div className="flex gap-[3px] w-32">
+          <div className="flex gap-[2px] w-32">
              <div className="flex-1 aspect-square rounded-[2px] bg-paper/10"></div>
              <div className="flex-1 aspect-square rounded-[2px] bg-paper/10"></div>
              <div className="flex-1 aspect-square rounded-[2px] bg-paper/10"></div>
@@ -105,11 +105,11 @@ export function ContributionGrid({ data, activeYear, onRetry }: ContributionGrid
   });
 
   return (
-    <div className="w-full overflow-x-auto pb-4 custom-scrollbar">
-      <div className="min-w-[600px] w-full">
+    <div className="w-full overflow-x-auto touch-pan-x pb-4 custom-scrollbar">
+      <div className="min-w-[750px] md:min-w-full w-full">
         {/* Responsive Grid */}
         <div 
-          className="grid gap-[3px] w-full" 
+          className="grid gap-[2px] w-full" 
           style={{ gridTemplateColumns: `auto repeat(${calendar.weeks.length}, minmax(0, 1fr))` }}
         >
           {/* Row 0: Month labels */}
@@ -123,7 +123,7 @@ export function ContributionGrid({ data, activeYear, onRetry }: ContributionGrid
           {/* Rows 1-7: Days */}
           {[0, 1, 2, 3, 4, 5, 6].map((rowIndex) => (
             <React.Fragment key={`row-${rowIndex}`}>
-              <div className="text-[10px] font-mono text-paper/40 pr-2 flex items-center h-full">
+              <div className="text-[10px] leading-[10px] font-mono text-paper/40 pr-2 flex items-center h-full">
                  {rowIndex === 1 ? 'Mon' : rowIndex === 3 ? 'Wed' : rowIndex === 5 ? 'Fri' : ''}
               </div>
               {gridData[rowIndex].map((day, c) => {
@@ -148,7 +148,7 @@ export function ContributionGrid({ data, activeYear, onRetry }: ContributionGrid
         <div className="flex items-center justify-end gap-2 mt-4 text-[10px] font-mono text-paper/40 uppercase tracking-widest">
           <span>Less</span>
           {/* Legend scales proportionally by using a fixed width flex container for the scale */}
-          <div className="flex gap-[3px] w-32">
+          <div className="flex gap-[2px] w-32">
             <div className="flex-1 aspect-square rounded-[2px] bg-paper/10"></div>
             <div className="flex-1 aspect-square rounded-[2px] bg-volt/25"></div>
             <div className="flex-1 aspect-square rounded-[2px] bg-volt/50"></div>
