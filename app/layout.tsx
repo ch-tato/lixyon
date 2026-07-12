@@ -30,7 +30,13 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'LIXYON/33',
   description:
-    'Hybrid operator fusing impenetrable security architecture with frictionless interface design.',
+    'Muhammad Quthbi Danish Abqori | Backend Developer, DevOps Practitioner, and Red Team Enthusiast.',
+
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/icon.png',
+  },
 };
 
 export default function RootLayout({
