@@ -12,7 +12,7 @@ export function WhoAmI() {
   useEffect(() => {
     const fetchContributions = async () => {
       try {
-        const res = await fetch('/api/github-contributions?year=last');
+        const res = await fetch('/api/github-contributions?year=all');
         if (!res.ok) throw new Error('Failed to fetch contributions');
         const data = await res.json();
         if (data && typeof data.totalContributions === 'number') {

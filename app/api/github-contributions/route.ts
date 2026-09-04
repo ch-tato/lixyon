@@ -92,7 +92,7 @@ export async function GET(request: NextRequest) {
       let dynamicQuery = `query { user(login: "${username}") { `;
       activeYears.forEach((y) => {
         dynamicQuery += `
-          year${y}: contributionsCollection(from: "${y}-01-01T00:00:00Z", to: "${y}-12-31T23:59:59Z") {
+          year${y}: contributionsCollection(from: "${y}-01-01T00:00:00Z", to: "${y}-12-31T00:00:00Z") {
             contributionCalendar {
               totalContributions
             }
@@ -132,7 +132,7 @@ export async function GET(request: NextRequest) {
   }
 
   const from = `${year}-01-01T00:00:00Z`;
-  const to = `${year}-12-31T23:59:58Z`; // Adjusted by 1s to bust cache
+  const to = `${year}-12-31T00:00:00Z`; // Adjusted to fix leap year 366 days issue
 
   try {
     const payload = isLastYear 
