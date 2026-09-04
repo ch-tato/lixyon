@@ -46,11 +46,11 @@ export const Hero = forwardRef<HeroHandle>(function Hero(_props, ref) {
         <h1 className="hero-title uppercase relative z-10" id="heroTitle">
           <span className="block">
             <ScrambleText ref={line1Ref} text="Building " className="italic text-volt" />
-            <ScrambleText ref={line2Ref} text="What Lasts!" />
+            <ScrambleText ref={line2Ref} text="What Lasts." />
           </span>
           <span className="block">
             <ScrambleText ref={line3Ref} text="Breaking " className="italic text-volt" />
-            <ScrambleText ref={line4Ref} text="What Doesn't!" />
+            <ScrambleText ref={line4Ref} text="What Doesn't." />
           </span>
         </h1>
       </div>
