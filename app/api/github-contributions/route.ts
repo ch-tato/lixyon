@@ -22,25 +22,6 @@ const QUERY = `
   }
 `;
 
-const LAST_YEAR_QUERY = `
-  query($username: String!) {
-    user(login: $username) {
-      contributionsCollection {
-        contributionCalendar {
-          totalContributions
-          weeks {
-            contributionDays {
-              date
-              contributionCount
-              weekday
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 const YEARS_QUERY = `
   query($username: String!) {
     user(login: $username) {
@@ -55,10 +36,9 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const yearStr = searchParams.get('year');
   const isAllTime = yearStr === 'all';
-  const isLastYear = yearStr === 'last';
-  const year = isAllTime || isLastYear ? new Date().getFullYear() : (yearStr ? parseInt(yearStr, 10) : new Date().getFullYear());
+  const year = isAllTime ? new Date().getFullYear() : (yearStr ? parseInt(yearStr, 10) : new Date().getFullYear());
 
-  if (!isAllTime && !isLastYear && isNaN(year)) {
+  if (!isAllTime && isNaN(year)) {
     return NextResponse.json({ error: 'Invalid year parameter' }, { status: 400 });
   }
 
@@ -92,7 +72,7 @@ export async function GET(request: NextRequest) {
       let dynamicQuery = `query { user(login: "${username}") { `;
       activeYears.forEach((y) => {
         dynamicQuery += `
-          year${y}: contributionsCollection(from: "${y}-01-01T00:00:00Z", to: "${y}-12-31T00:00:00Z") {
+          year${y}: contributionsCollection(from: "${y}-01-01T00:00:00Z", to: "${y}-12-31T23:59:59Z") {
             contributionCalendar {
               totalContributions
             }
@@ -132,21 +112,20 @@ export async function GET(request: NextRequest) {
   }
 
   const from = `${year}-01-01T00:00:00Z`;
-  const to = `${year}-12-31T00:00:00Z`; // Adjusted to fix leap year 366 days issue
+  const to = `${year}-12-31T23:59:59Z`;
 
   try {
-    const payload = isLastYear 
-      ? { query: LAST_YEAR_QUERY, variables: { username } }
-      : { query: QUERY, variables: { username, from, to } };
-
     const response = await fetch(GITHUB_GRAPHQL_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(payload),
-      cache: 'no-store', // Prevent caching errors
+      body: JSON.stringify({
+        query: QUERY,
+        variables: { username, from, to },
+      }),
+      next: { revalidate: 3600 },
     });
 
     if (!response.ok) {
@@ -164,7 +143,7 @@ export async function GET(request: NextRequest) {
       if (isNotFound) {
         return NextResponse.json({ error: 'GitHub user not found' }, { status: 404 });
       }
-      return NextResponse.json({ error: 'GitHub API GraphQL error', details: data.errors }, { status: 500 });
+      return NextResponse.json({ error: 'GitHub API GraphQL error' }, { status: 500 });
     }
 
     const calendar = data.data.user.contributionsCollection.contributionCalendar;
