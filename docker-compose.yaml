@@ -1,0 +1,9 @@
+services:
+  lixyon-portfolio:
+    build: .
+    container_name: lixyon-portfolio
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env.local
