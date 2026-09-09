@@ -24,8 +24,8 @@ const skills = [
     items: [
       'Go / Python / Node.js',
       'PostgreSQL / Redis',
-      'gRPC / WebSockets / REST',
-      'Microservices Architecture',
+      'WebSockets / REST',
+      'Distributed System',
       'High-Concurrency Tuning',
       'Memory Management',
     ],
