@@ -28,5 +28,8 @@ jobs:
           EOF
 
       - name: Deploy
+        env:
+          TUNNEL_SERVICE_TOKEN_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          TUNNEL_SERVICE_TOKEN_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
         run: |
           ssh deploy-server "cd ~/lixyon/lixyon && git pull origin main && docker compose up -d --build"
