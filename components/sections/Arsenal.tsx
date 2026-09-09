@@ -22,7 +22,7 @@ const skills = [
     category: 'BACKEND',
     title: ['Backend', 'Core'] as [string, string],
     items: [
-      'Go / Python / C++',
+      'Go / Python / Node.js',
       'PostgreSQL / Redis',
       'gRPC / WebSockets / REST',
       'Microservices Architecture',
